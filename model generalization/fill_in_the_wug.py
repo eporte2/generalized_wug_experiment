@@ -17,7 +17,7 @@ parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--context_file', help="The path to a context file if using pre-written contexts")
 parser.add_argument('--nonce_file', help='The path to a nonce file if using a list of nonces')
 parser.add_argument('--model', default="bert-base-cased", help=f"Select the model to use, currently supports {list(mask_dictionary.keys())}")
-parser.add_argument('--force-sentence', help="Putting a sentence of the form 'Something something YYY' will cause the script to only fill this sentence and ignore th input datasets.)
+parser.add_argument('--force-sentence', help="Putting a sentence of the form 'Something something YYY' will cause the script to only fill this sentence and ignore th input datasets.")
 
 args = parser.parse_args()
 
