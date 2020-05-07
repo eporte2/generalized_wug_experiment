@@ -2,10 +2,10 @@ function make_slides(f) {
   var   slides = {};
 
   slides.i0 = slide({
-     name : "i0",
-     start: function() {
-      exp.startT = Date.now();
-     }
+    name : "i0",
+    start: function() {
+    exp.startT = Date.now();
+    }
   });
 
   slides.instructions = slide({
@@ -15,22 +15,25 @@ function make_slides(f) {
     }
   });
 
-  slides.generation = slide({
+  slides.one_slider = slide({
+    name : "one_slider",
     present: exp.stims, //every element in exp.stims is passed to present_handle one by one as 'stim'
-
-    present_handle :function(stim) {
+    
+    present_handle : function(stim) {
       $(".err").hide();
-      this.stim = stim;
-      $(".prompt").html(this.stim.prompt);
+    
+      this.stim = stim; // store this information in the slide so you can record it later
+      $(".prompt").html(stim.sentence);
 
-      $('input[id="text_response"]').prop("checked", false)
+      $('input[name="natural"]').prop("checked", false);
+
+      // this.init_sliders();
+      // exp.sliderPost = null; //erase current slider value
     },
 
-    name: "generation_one",
-
     button : function() {
-      exp.response = $("#text_response").val();
-      if (exp.response.length == 0) {
+      exp.response = $('input[name="natural"]:checked').val();
+      if (exp.response == null) {
         $(".err").show();
       } else {
         this.log_responses();
@@ -41,24 +44,27 @@ function make_slides(f) {
       }
     },
 
+    // init_sliders : function() {
+    //   utils.make_slider("#single_slider", function(event, ui) {
+    //     exp.sliderPost = ui.value;
+    //   });
+    // },
+
     log_responses : function() {
-      exp.data_trials.push({
+    exp.data_trials.push({
         "slide_number" : exp.phase,
-        "condition" : this.stim.condition,
         "item" : this.stim.item,
-        "category" : this.stim.category,
-        "context" : this.stim.context,
-        "root" : this.stim.root,
-        "prompt" : this.stim.prompt,
+        "condition" : this.stim.condition,
+        "stim" : this.stim.sentence,
         "response" : exp.response
-      });
+    });
+
     }
   });
 
   slides.subj_info =  slide({
     name : "subj_info",
     submit : function(e){
-      //if (e.preventDefault) e.preventDefault(); // I don't know what this means.
       exp.subj_data = {
         language : $("#language").val(),
         enjoyment : $("#enjoyment").val(),
@@ -97,19 +103,19 @@ function init() {
   exp.trials = [];
   exp.catch_trials = [];
 
-  exp.condition = _.sample(["condition 1", "condition 2"]); //can randomize between subject conditions here
+  exp.condition = _.sample(["ambiguous", "unambiguous"]);
   console.log(exp.condition);
 
-
-  var items =  [
-    {condition: "condition 1", item: "nonce", category: "noun",context: "My favorite animal is the XXX. They are impressive creatures. I saw a group of YYY during our trip last summer and I was so excited.", root: "bem", prompt: "My favorite animal is the bem. They are impressive creatures. I saw a group of [BLANK] during our trip last summer and I was so excited."},
-    {condition: "condition 2", item: "nonce", category: "adjective", context: "My mom's food always tastes XXX. She learnt to cook XXX food from her mom. I think she makes the YYY food in the world. Or at least, YYY food than my dad does.", root:"bem", prompt: "My mom's food always tastes bem. She learnt to cook bem food from her mom. I think she makes the [BLANK 1] food in the world. Or at least, [BLANK 2] food than my dad does."},
-    {condition:"condition 1", item: "real", category:"noun",context:"My favorite animal is the XXX. They are impressive creatures. I saw a group of YYY during our trip last summer and I was so excited.", root:"lion", prompt:"My favorite animal is the lion. They are impressive creatures. I saw a group of [BLANK] during our trip last summer and I was so excited."},
-    {condition:"condition 2", item: "real", category:"adjective", context: "My mom's food always tastes XXX. She learnt to cook XXX food from her mom. I think she makes the YYY food in the world. Or at least, YYY food than my dad does.", root: "tasty", prompt: "My mom's food always tastes tasty. She learnt to cook tasty food from her mom. I think she makes the [BLANK 1] food in the world. Or at least, [BLANK 2] food than my dad does."}
+  var items =  [    
+    {item: "horse", condition: "ambiguous", sentence: "The horse raced past the barn fell."},
+    {item: "horse", condition: "unambiguous", sentence: "The horce that raced past the barn fell."},
+    {item: "food", condition: "ambiguous", sentence: "When Fred eats food gets thrown."},
+    {item: "food", condition: "unambiguous", sentence: "When Fred eats, food gets thrown."}
   ];
 
-    exp.stims = _.shuffle(items);
 
+
+  exp.stims = _.shuffle(items);
 
   exp.system = {
       Browser : BrowserDetect.browser,
@@ -119,8 +125,9 @@ function init() {
       screenW: screen.width,
       screenUW: exp.width
     };
+
   //blocks of the experiment:
-  exp.structure=["i0", "instructions", "generation", 'subj_info', 'thanks'];
+  exp.structure=["i0", "instructions", "one_slider", 'subj_info', 'thanks'];
 
   exp.data_trials = [];
   //make corresponding slides:

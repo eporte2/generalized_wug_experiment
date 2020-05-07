@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Title of This Experiment</title>
+    <title>Full Generation Wug Test</title>
 
     <!--JS-->
 
@@ -50,7 +50,7 @@ $(function(){
 
   <div class="slide" id="i0" >
     <p id="cocolab">Stanford Linguistics</p>
-    <p id="instruct-text">You will see some stuff and be asked some questions. The HIT should take ~2 minutes. Please pay attention, thanks!</p>
+    <p id="instruct-text">You will see sentences with words missing and be asked to fill in the blank. The HIT should take ~15 minutes. Please pay attention, thanks!</p>
     <i><small><small><strong><br>LEGAL INFORMATION</strong>:<br><br>We invite you to participate in a research study on language production and comprehension.<br>Your experimenter will ask you to do a linguistic task such as reading sentences or words, naming pictures or describing scenes, making up sentences of your own, or participating in a simple language game.<br><br>You will be paid for your participation at the posted rate.<br><br>There are no risks or benefits of any kind involved in this study.<br><br>If you have read this form and have decided to participate in this experiment, please understand your participation is voluntary and you have the right to withdraw your consent or discontinue participation at any time without penalty or loss of benefits to which you are otherwise entitled. You have the right to refuse to do particular tasks. Your individual privacy will be maintained in all published and written data resulting from the study.<br>You may print this form for your records.<br><br>CONTACT INFORMATION:<br>If you have any questions, concerns or complaints about this research study, its procedures, risks and benefits, you should contact the Protocol Director Meghan Sumner at <br>(650)-725-9336<br><br>If you are not satisfied with how this study is being conducted, or if you have any concerns, complaints, or general questions about the research or your rights as a participant, please contact the Stanford Institutional Review Board (IRB) to speak to someone independent of the research team at (650)-723-2480 or toll free at 1-866-680-2906. You can also write to the Stanford IRB, Stanford University, 3000 El Camino Real, Five Palo Alto Square, 4th Floor, Palo Alto, CA 94306 USA.<br><br>If you agree to participate, please proceed to the study tasks.<br><br></small></small></i>
     <button id="start_button" type="button">Start Experiment</button>
   </div>
@@ -59,55 +59,39 @@ $(function(){
 Otherwise, modified to whatever is required for you given your affiliation.
 -->
 
+<!--%%%%%%%%%%%%%%%%%% INSTRUCTION SLIDE %%%%%%%%%%%%%%%%%%%-->
 <div class="slide" id="instructions">
   <h3>Instructions</h3>
-  <p>Here are some instructions.</p>
+  <p>On the next pages, you will see short text passages with incomplete sentences. Some of these sentences will contain new English words. You will be asked to complete the sentences. </p>
   <button onclick="_s.button()">Continue</button>
 </div>
 
-  <div class="slide" id="single_trial">
-    <p>Here is a single trial. Depending on the condition, you'll see different words below:</p>
-    <p class="display_condition">{{}}</p>
+
+<!--%%%%%%%%%% SINGLE WRITING BOX AT THE BOTTOM %%%%%%%%%%%%%-->
+
+  <div class="slide" id="generation_one">
+    <p>Fill in the blank in sentence below using the text box.</p>
+    <p class="prompt">{{}}</p>
     <input type="text" id="text_response"></input>
+    <br></br>
     <button onclick="_s.button()">Continue</button>
     <p class="err">Please write something.</p>
   </div>
 
-  <div class="slide" id="one_slider">
-    <p>Here is one slider. For every trial in this block, you get an input to the 'present_handle' function. You can use that variable to display different prompts:</p>
-    <p class="prompt"></p>
-    <table id="slider_table" class="slider_table">
-      <tr><td class="left">completely disagree</td><td class="right">completely agree</td></tr>
-      <tr><td colspan="2"><div id="single_slider" class="slider"></div></td></tr>
-    </table>
-    <button onclick="_s.button()">Continue</button>
-    <div class="err">Please adjust the slider before continuing.</div>
-  </div>
+  <!--%%%%%%%%%% SINGLE WRITING BOX AT THE BOTTOM %%%%%%%%%%%%%-->
 
-  <div class="slide" id="multi_slider">
-    <p>Here are a bunch of sliders.</p>
-    <p>How likely do you think it is that someone would say each of the following?</p>
-    <table id="multi_slider_table" class="slider_table">
-      <tr><td></td><td class="left">very unlikely</td><td class="right">very likely</td></tr>
-    </table>
-    <button onclick="_s.button()">Continue</button>
-    <div class="err">Please adjust all the sliders before continuing.</div>
-  </div>
+    <div class="slide" id="generation_two">
+      <p>Fill in the two blanks in sentence below using the first and second text boxes respectively below.</p>
+      <p class="prompt">{{}}</p>
+      <input type="text" id="text_response"></input>
+      <input type="text" id="text_response"></input>
+      <br></br>
+      <button onclick="_s.button()">Continue</button>
+      <p class="err">Please write something.</p>
+    </div>
 
-  <div class="slide" id="vertical_sliders">
-    <p>Here are a bunch of vertical sliders.</p>
-    <p id="vertical_question">{{}}</p>
-    <table id="vertical_slider_table" class="slider_table">
-      <tbody>
-        <tr id="sliders">
-        </tr>
-        <tr id="bin_labels">
-        </tr>
-      </tbody>
-    </table>
-    <button onclick="_s.button()">Continue</button>
-    <div class="err">Please adjust all the sliders before continuing.</div>
-  </div>
+
+<!--%%%%%%%%%%%%%%%%%%%% SUBJECT INFO SLIDE %%%%%%%%%%%%%%%%%-->
 
   <div class="slide"  id="subj_info">
     <div class="long_form">
@@ -164,8 +148,10 @@ Otherwise, modified to whatever is required for you given your affiliation.
     </div>
   </div>
 
+
+<!--%%%%%%%%%%%%%%%%%%%% THANKS SLIDE %%%%%%%%%%%%%%%%%%%%-->
   <div id="thanks" class="slide js" >
-    <p  class="big">Thanks for your Time!</p>
+    <p  class="big">Thanks for your time!</p>
   </div>
 
   <div class="progress">
