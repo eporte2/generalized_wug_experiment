@@ -32,7 +32,7 @@ This is where you specify the control flow for
  ```
  slides.[slideName] = slide({...slide specification...});
  ```
- 
+
 Technically, the slide specification (including the curly brackets) is an object that is passed
  as argument to the `slide` function,
 but the details do not matter too much for now.
@@ -62,8 +62,8 @@ To find out which array is relevant, take a look at `slides.thanks`.
 **Very important: absolutely make sure that you have logged all the relevant information by checking the output at the end of the experiment in the debug mode AND go through the process in the Sandbox.**
 
 Now you should have a sense of the basic flow of the experiment, but it probably will take a lot of trials and errors for you to get familiar with it.
-  
-### Next: 
-Take a look at `slides.single_trial`, `slides.multi_slider`, `slides.vertical_sliders`, `slides.subj_info` to see how various response types are logged. 
+
+### Next:
+Take a look at `slides.single_trial`, `slides.multi_slider`, `slides.vertical_sliders`, `slides.subj_info` to see how various response types are logged.
 
 Try to modify the critical slide in various ways so that the responses are in the form of (i) a slider, (ii) a drop-down panel, (iii) a textbox. Pay attention to what kind of verification and error messages are suitable in each cases.
