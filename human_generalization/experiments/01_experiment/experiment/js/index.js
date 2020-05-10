@@ -32,7 +32,7 @@ function make_slides(f) {
       this.stim = stim;
       $(".prompt").html(this.stim.prompt);
 
-      $('input[id="text_response"]').prop("value", "")
+      $("#text_response").val("");
     },
 
     button : function() {
@@ -93,6 +93,7 @@ function make_slides(f) {
       name: "generation",
 
       button : function() {
+        console.log("BUTTON");
         if (this.stim.category != "noun"){
           exp.response1 = $("#text_response1").val();
           exp.response2 = $("#text_response2").val();
@@ -102,6 +103,7 @@ function make_slides(f) {
         }
         if (exp.response1.length == 0 || exp.response2.length == 0 ) {
           $(".err").show();
+          console.log("ERROR");
         } else {
           this.log_responses();
 
@@ -172,13 +174,13 @@ function init() {
   console.log(exp.condition);
 
   exp.training_stims = [
+    {condition:"condition 1", item: "real", category:"noun",context:"My favorite animal is the XXX. They are impressive creatures. I saw a group of YYY during our trip last summer and I was so excited.", root:"lion", prompt:"My favorite animal is the lion. They are impressive creatures. I saw a group of [BLANK1] during our trip last summer and I was so excited."}
 
   ]
 
   var items =  [
     {condition: "condition 1", item: "nonce", category: "noun",context: "My favorite animal is the XXX. They are impressive creatures. I saw a group of YYY during our trip last summer and I was so excited.", root: "bem", prompt: "My favorite animal is the bem. They are impressive creatures. I saw a group of [BLANK1] during our trip last summer and I was so excited."},
     {condition: "condition 2", item: "nonce", category: "adjective", context: "My mom's food always tastes XXX. She learnt to cook XXX food from her mom. I think she makes the YYY food in the world. Or at least, YYY food than my dad does.", root:"bem", prompt: "My mom's food always tastes bem. She learnt to cook bem food from her mom. I think she makes the [BLANK 1] food in the world. Or at least, [BLANK 2] food than my dad does."},
-    {condition:"condition 1", item: "real", category:"noun",context:"My favorite animal is the XXX. They are impressive creatures. I saw a group of YYY during our trip last summer and I was so excited.", root:"lion", prompt:"My favorite animal is the lion. They are impressive creatures. I saw a group of [BLANK1] during our trip last summer and I was so excited."},
     {condition:"condition 2", item: "real", category:"adjective", context: "My mom's food always tastes XXX. She learnt to cook XXX food from her mom. I think she makes the YYY food in the world. Or at least, YYY food than my dad does.", root: "tasty", prompt: "My mom's food always tastes tasty. She learnt to cook tasty food from her mom. I think she makes the [BLANK 1] food in the world. Or at least, [BLANK 2] food than my dad does."}
   ];
 
