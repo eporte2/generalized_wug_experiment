@@ -170,21 +170,26 @@ function init() {
   exp.trials = [];
   exp.catch_trials = [];
 
-  exp.condition = _.sample(["condition 1", "condition 2"]); //can randomize between subject conditions here
+  exp.condition = turkGetParam("condition");
+
   console.log(exp.condition);
 
   exp.training_stims = [
-    {condition:"condition 1", item: "real", category:"noun",context:"My favorite animal is the XXX. They are impressive creatures. I saw a group of YYY during our trip last summer and I was so excited.", root:"lion", prompt:"My favorite animal is the lion. They are impressive creatures. I saw a group of [BLANK1] during our trip last summer and I was so excited."}
-
-  ]
-
-  var items =  [
-    {condition: "condition 1", item: "nonce", category: "noun",context: "My favorite animal is the XXX. They are impressive creatures. I saw a group of YYY during our trip last summer and I was so excited.", root: "bem", prompt: "My favorite animal is the bem. They are impressive creatures. I saw a group of [BLANK1] during our trip last summer and I was so excited."},
-    {condition: "condition 2", item: "nonce", category: "adjective", context: "My mom's food always tastes XXX. She learnt to cook XXX food from her mom. I think she makes the YYY food in the world. Or at least, YYY food than my dad does.", root:"bem", prompt: "My mom's food always tastes bem. She learnt to cook bem food from her mom. I think she makes the [BLANK 1] food in the world. Or at least, [BLANK 2] food than my dad does."},
-    {condition:"condition 2", item: "real", category:"adjective", context: "My mom's food always tastes XXX. She learnt to cook XXX food from her mom. I think she makes the YYY food in the world. Or at least, YYY food than my dad does.", root: "tasty", prompt: "My mom's food always tastes tasty. She learnt to cook tasty food from her mom. I think she makes the [BLANK 1] food in the world. Or at least, [BLANK 2] food than my dad does."}
+    {condition:"training", item: "real", category:"noun",context:"This is a XXX. They are really enjoyable. This one is one of my sister's YYY.", root:"bear", prompt:"This is a bear. They are really enjoyable. This one is one of my sister's [BLANK1]."},
+    {condition:"training", item: "real", category:"verb",context:"I would love to learn how to XXX. My friend has been YYY recently and loves it.", root:"knit", prompt:"I would love to learn how to knit. My friend has been [BLANK1] recently and loves it."},
+    {condition:"training", item: "real", category:"verb",context:"John said he wants to XXX. Yesterday, his partner YYY and John decided he wanted to try.", root:"cook", prompt:"John said he wants to cook. Yesterday, partner [BLANK1] and John decided he wanted to try."},
+    {condition:"training", item: "real", category:"adjective",context:"Such a XXX child! She really is the YYY child I've ever seen.", root:"sweet", prompt:"Such a sweet child! She really is the [BLANK1] child I've ever seen."},
+    {condition:"training", item: "real", category:"adjective",context:"This was a XXX problem. It was definitely YYY than other problems they had encountered.", root:"hard", prompt:"This was a hard problem. It was definitely [BLANK1] than other problems they had encountered."}
   ];
 
-    exp.stims = _.shuffle(items);
+  var condition_items = [];
+  for (var i = 0; i < items.length; i++){
+    if (items[i]["condition"]==exp.condition || items[i]["condition"]== "filler"){
+      condition_items.push(items[i]);
+    }
+  }
+
+    exp.stims = _.shuffle(condition_items);
 
 
   exp.system = {
