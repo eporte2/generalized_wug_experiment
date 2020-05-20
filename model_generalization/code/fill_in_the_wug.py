@@ -86,6 +86,8 @@ def generation_task(dataset):
             pprint(filled)
 
 
+### MAIN ###
+
 if force_sentence:
     num_masks = force_sentence.count("YYY")
     sample = force_sentence.replace("YYY", mask_dictionary[model_name]).lstrip()

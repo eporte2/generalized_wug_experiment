@@ -1,0 +1,206 @@
+<html>
+
+<head>
+    <title>Full Generation Wug Test</title>
+
+    <!--JS-->
+
+    <!-- external general utilities -->
+    <script src="shared/js/jquery-1.11.1.min.js"></script>
+    <script src="shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <!-- <script src="shared/js/raphael-min.js"></script> -->
+
+    <!-- cocolab experiment logic -->
+    <script src="shared/js/exp-V2.js"></script>
+    <script src="shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="shared/js/mmturkey.js "></script>
+    <script src="shared/js/browserCheck.js"></script>
+    <script src="shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <!-- <script src="js/local-utils.js"></script> -->
+
+    <!--CSS-->
+    <link href="shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/> -->
+    <link href="shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+
+     <script src="./shared/js/uniqueturker.js"></script>
+    <!-- experiment file -->
+    <script src="js/stims.js"></script>
+    <script src="js/index.js"></script>
+
+
+    <script type="text/JavaScript">
+     $(document).ready(function(){
+     var ut_id = "a8d5d7fa76c6ef58058c6c2bf5554aad" // remember to replace this!!!
+     if (UTWorkerLimitReached(ut_id)) {
+     $(".slide").hide();
+     $("body").html("You have already completed the maximum number of HITs allowed by this requester. Please click 'Return HIT' to avoid any impact on your approval rating.");
+     }});
+
+     </script>
+
+<!-- Load consent form
+<script>
+$(function(){
+  $("#consent-form").load("./html/consent.html");
+});
+</script>
+-->
+
+</head>
+
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+  <div class="slide" id="i0" >
+    <p id="cocolab">Stanford Linguistics</p>
+    <p id="instruct-text">You will see sentences with words missing and be asked to fill in the blank. The HIT should take ~15 minutes. Please pay attention, thanks!</p>
+    <i><small><small><strong><br>LEGAL INFORMATION</strong>:<br><br>We invite you to participate in a research study on language production and comprehension.<br>Your experimenter will ask you to do a linguistic task such as reading sentences or words, naming pictures or describing scenes, making up sentences of your own, or participating in a simple language game.<br><br>You will be paid for your participation at the posted rate.<br><br>There are no risks or benefits of any kind involved in this study.<br><br>If you have read this form and have decided to participate in this experiment, please understand your participation is voluntary and you have the right to withdraw your consent or discontinue participation at any time without penalty or loss of benefits to which you are otherwise entitled. You have the right to refuse to do particular tasks. Your individual privacy will be maintained in all published and written data resulting from the study.<br>You may print this form for your records.<br><br>CONTACT INFORMATION:<br>If you have any questions, concerns or complaints about this research study, its procedures, risks and benefits, you should contact the Protocol Director Meghan Sumner at <br>(650)-725-9336<br><br>If you are not satisfied with how this study is being conducted, or if you have any concerns, complaints, or general questions about the research or your rights as a participant, please contact the Stanford Institutional Review Board (IRB) to speak to someone independent of the research team at (650)-723-2480 or toll free at 1-866-680-2906. You can also write to the Stanford IRB, Stanford University, 3000 El Camino Real, Five Palo Alto Square, 4th Floor, Palo Alto, CA 94306 USA.<br><br>If you agree to participate, please proceed to the study tasks.<br><br></small></small></i>
+    <button id="start_button" type="button">Start Experiment</button>
+  </div>
+
+<!--Consent form used in Stanford linguistics department and is good for ling245.
+Otherwise, modified to whatever is required for you given your affiliation.
+-->
+
+<!--%%%%%%%%%%%%%%%%%% INSTRUCTION SLIDE %%%%%%%%%%%%%%%%%%%-->
+<div class="slide" id="introduction">
+  <h2>Hi there!</h2>
+  <p>In this experiment, we will be introducing new English words like <b><i>wug</i></b> and we would like you to help us figuring out how to use these words in sentences.</p>
+  <p>First, we'll have you try a couple practice rounds and then we'll start the experiment!</p>
+  <button onclick="_s.button()">Continue</button>
+</div>
+
+
+<!--%%%%%%%%%%%%%%%%%% INSTRUCTION SLIDE %%%%%%%%%%%%%%%%%%%-->
+<div class="slide" id="training_instructions">
+  <h2>Practice Round</h2>
+  <h3>Instructions</h3>
+  <p>You will see short text passages which contain incomplete sentences. Parts of the sentences have been replaced by blanks. You will be asked to complete them by writing what you think has been replaced in the text boxes provided. </p>
+  <button onclick="_s.button()">Continue</button>
+</div>
+
+
+
+<!--%%%%%%%%%% SINGLE WRITING BOX AT THE BOTTOM %%%%%%%%%%%%%-->
+
+  <div class="slide" id="training">
+    <h4>Complete the sentences below by filling in the blanks using the available text boxes.</h4>
+    <form>
+      <label class="prompt1">{{}}</label>
+      <input type="text" placeholder="[BLANK1]" id="text_response"></input>
+      <label class="prompt2">{{}}</label>
+    </form>
+    <br></br>
+    <button onclick="_s.button()">Continue</button>
+    <p class="err">Please complete the sentences by writing something.</p>
+  </div>
+
+
+  <!--%%%%%%%%%%%%%%%%%% INSTRUCTION SLIDE %%%%%%%%%%%%%%%%%%%-->
+  <div class="slide" id="instructions">
+    <h2>Experiment Round</h2>
+    <h3>Instructions</h3>
+    <p>Like in the practice round, you will see short text passages with incomplete sentences. Some of these sentences will contain <b>new English words</b>. Parts of the sentences have been replaced by blanks. You will be asked to complete them by writing what you think has been replaced in the text boxes provided. </p>
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+
+  <!--%%%%%%%%%% DOUBLE WRITING BOXES AT THE BOTTOM %%%%%%%%%%%%%-->
+
+    <div class="slide" id="generation">
+      <h4>Complete the sentences below by filling in the blanks using the available text boxes.</h4>
+      <form>
+        <label class="prompt1">{{}}</label>
+        <input type="text" placeholder="[BLANK1]" id="text_response1"></input>
+        <label class="prompt2">{{}}</label>
+        <input type="text" placeholder="[BLANK2]" id="text_response2"></input>
+        <label class="prompt3">{{}}</label>
+      </form>
+      <br></br>
+      <button onclick="_s.button()">Continue</button>
+      <p class="err">Please complete the sentences by writing something.</p>
+    </div>
+
+
+<!--%%%%%%%%%%%%%%%%%%%% SUBJECT INFO SLIDE %%%%%%%%%%%%%%%%%-->
+
+  <div class="slide"  id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+      <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+      <label><input type="radio"  name="assess" value="No"/>No</label>
+      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label>
+
+      <p>Were there any problems or bugs in the experiment?</p>
+      <textarea id="problems" rows="2" cols="50"></textarea>
+
+      <p>What do you think is a fair price for the work you did?</p>
+      <textarea id="fairprice" rows="1" cols="10"></textarea>
+
+      <p>Gender:
+        <select id="gender">
+          <label><option value=""/></label>
+          <label><option value="Male"/>Male</label>
+          <label><option value="Female"/>Female</label>
+          <label><option value="Other"/>Other</label>
+        </select>
+      </p>
+
+      <p>Age: <input type="text" id="age"/></p>
+
+      <p>Level Of Education:
+        <select id="education">
+          <label><option value="-1"/></label>
+          <label><option value="0"/>Some High School</label>
+          <label><option value="1"/>Graduated High School</label>
+          <label><option value="2"/>Some College</label>
+          <label><option value="3"/>Graduated College</label>
+          <label><option value="4"/>Hold a higher degree</label>
+        </select>
+      </p>
+
+      <p>Native Language: <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+      <p>Did you enjoy the hit?</p>
+      <select id="enjoyment">
+        <label><option value="-1"></option></label>
+        <label><option value="0">Worse than the Average HIT</option></label>
+        <label><option value="1" >An Average HIT</option></label>
+        <label><option value="2">Better than average HIT</option></label>
+      </select>
+
+      <p>We would be interested in any comments you have about this experiment. Please type them here:</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+      <br/>
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+
+<!--%%%%%%%%%%%%%%%%%%%% THANKS SLIDE %%%%%%%%%%%%%%%%%%%%-->
+  <div id="thanks" class="slide js" >
+    <p  class="big">Thanks for your time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

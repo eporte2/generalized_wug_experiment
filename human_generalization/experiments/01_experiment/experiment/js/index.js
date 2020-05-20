@@ -177,7 +177,7 @@ function init() {
   exp.training_stims = [
     {condition:"training", item: "real", category:"noun",context:"This is a XXX. They are really enjoyable. This one is one of my sister's YYY.", root:"bear", prompt:"This is a bear. They are really enjoyable. This one is one of my sister's [BLANK1]."},
     {condition:"training", item: "real", category:"verb",context:"I would love to learn how to XXX. My friend has been YYY recently and loves it.", root:"knit", prompt:"I would love to learn how to knit. My friend has been [BLANK1] recently and loves it."},
-    {condition:"training", item: "real", category:"verb",context:"John said he wants to XXX. Yesterday, his partner YYY and John decided he wanted to try.", root:"cook", prompt:"John said he wants to cook. Yesterday, partner [BLANK1] and John decided he wanted to try."},
+    {condition:"training", item: "real", category:"verb",context:"John said he wants to XXX. Yesterday, his partner YYY and John decided he wanted to try.", root:"cook", prompt:"John said he wants to cook. Yesterday, his partner [BLANK1] and John decided he wanted to try."},
     {condition:"training", item: "real", category:"adjective",context:"Such a XXX child! She really is the YYY child I've ever seen.", root:"sweet", prompt:"Such a sweet child! She really is the [BLANK1] child I've ever seen."},
     {condition:"training", item: "real", category:"adjective",context:"This was a XXX problem. It was definitely YYY than other problems they had encountered.", root:"hard", prompt:"This was a hard problem. It was definitely [BLANK1] than other problems they had encountered."}
   ];
