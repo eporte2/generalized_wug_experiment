@@ -1,3 +1,4 @@
+`%notin%` <- Negate(`%in%`)
 
 myCenter <- function(x) {
   if (is.numeric(x)) { return(x - mean(x)) }
